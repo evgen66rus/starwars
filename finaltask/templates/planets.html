@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Planets Home</h1>
+  <p>Welcome to StarWars planets!</p>
+
+  <h2>List of planets:</h2>
+    {% for planet in planets %} 
+      <h3><strong><a href="{% url 'planet-detail' planet.pk %}">{{ planet.name }}</strong></h3>
+    {% endfor %}
+{% endblock %}
+
