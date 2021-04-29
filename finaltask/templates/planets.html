@@ -6,7 +6,7 @@
 
   <h2>List of planets:</h2>
     {% for planet in planets %} 
-      <h3><strong><a href="{% url 'planet-detail' planet.pk %}">{{ planet.name }}</strong></h3>
+      <h4><a href="{% url 'planet-detail' planet.pk %}">{{ planet.name }}</h4>
     {% endfor %}
 {% endblock %}
 

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Character, Planet
 from django.views import generic
 import requests, json
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 
 def index(request):
     return render(request, 'base_generic.html')
@@ -35,14 +35,10 @@ def planet_detail_view(request,pk):
     return render(request, 'planet-detail.html', context=context)
 
 def update_data(request):
-    # url = 'https://swapi.dev/api/people/1/'
-    # zapros = requests.get(url)
-    # zapros = zapros.json()
 
     url = 'https://swapi.dev/api'
     url_people = url + '/people'
     url_planets = url + '/planets'
-
     planets_data = requests.get(url_planets)
     planets_data = planets_data.json()['results']
 
@@ -53,20 +49,33 @@ def update_data(request):
         planet_residents_urls = parameters['residents']
         char_list = []
         char_details = {}
-        planet_data = {}
+        planet_data = {'name': planet_name, 'gravity': planet_gravity, 'climate': planet_climate}
+        planets_in_db = 0
+        planets_updated = 0
+
+        if Planet.objects.filter(name=planet_name):
+            planets_in_db += 1
+        else:
+            p = Planet.objects.create(name=planet_name, gravity=planet_gravity, climate=planet_climate)
+            p.save()
+            planets_updated += 1
+        
         for char_url in planet_residents_urls:
             char_raw_data = requests.get(char_url)
             char_raw_data = char_raw_data.json()
+            char_homeworld = planet_name
             char_name = char_raw_data['name']
-            char_list.append(char_name)
-            
             char_gender = char_raw_data['gender']
-            char_details = {'name': char_name, 'homeworld': planet_name, 'gender': char_gender}
-            #print(char_details)
-        planet_data = {'name': planet_name, 'gravity': planet_gravity, 'climate': planet_climate, 'residents': char_list}
-        #print(planet_data)
+            char_details = {'name': char_name, 'homeworld': char_homeworld, 'gender': char_gender}
+            char_in_db = 0
+            char_updated = 0
+            if Character.objects.filter(name=char_name):
+                char_in_db += 1
+            else:
+                homeworld_id = Planet.objects.get(name=char_homeworld)
+                homeworld_id = homeworld_id.pk
+                c = Character.objects.create(name=char_name, gender=char_gender, homeworld=Planet.objects.get(pk=homeworld_id))
+                c.save()
+                char_updated += 1
 
-
-
-    html = "<html><body><pre>Data: %s.</pre></body></html>" % json.dumps(char_details, indent=2)
-    return HttpResponse(html)
+    return render(request, 'update_data.html')
