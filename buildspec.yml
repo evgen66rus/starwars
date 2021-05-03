@@ -1,0 +1,17 @@
+version: 2.0
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands: 
+      - echo "installing"
+  pre-build:
+    commands:
+      - echo "waiting"
+  build:
+    commands:
+      - echo "building"
+  post-build:
+    commands:
+      - echo "done"
