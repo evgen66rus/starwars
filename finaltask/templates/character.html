@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Character Home</h1>
+  <p>Welcome to StarWars characters!</p>
+
+  <h2>List of characters:</h2>
+
+  <ul>
+    {% for man in person %}
+        <p>Name: <strong>{{ man.name }}</strong>, Homeworld: <strong>{{ man.homeworld }}</strong>, Gender: <strong>{{ man.gender }}</strong></p>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
