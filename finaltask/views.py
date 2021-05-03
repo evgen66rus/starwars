@@ -23,6 +23,8 @@ def planets(request):
     return render(request, 'planets.html', context=context)
 
 def planet_detail_view(request,pk):
+    # get planet's detailes
+    
     try:
         planet_id=Planet.objects.get(pk=pk)
     except Planet.DoesNotExist:
@@ -36,7 +38,7 @@ def planet_detail_view(request,pk):
 
 def update_data(request):
     # fetching data from the api
-    
+
     url = 'https://swapi.dev/api'
     url_people = url + '/people'
     url_planets = url + '/planets'
