@@ -35,7 +35,8 @@ def planet_detail_view(request,pk):
     return render(request, 'planet-detail.html', context=context)
 
 def update_data(request):
-
+    # fetching data from the api
+    
     url = 'https://swapi.dev/api'
     url_people = url + '/people'
     url_planets = url + '/planets'
