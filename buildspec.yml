@@ -6,12 +6,12 @@ phases:
       python: 3.8
     commands: 
       - echo "installing"
-  pre-build:
+  pre_build:
     commands:
       - echo "waiting"
   build:
     commands:
       - echo "building"
-  post-build:
+  post_build:
     commands:
       - echo "done"
