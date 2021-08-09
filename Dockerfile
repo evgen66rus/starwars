@@ -17,7 +17,7 @@ RUN pip3 install python-dotenv
 WORKDIR $DockerHOME
 
 COPY ./starwars.ini /etc/uwsgi/sites/starwars.ini
-COPY ./starwars/ /var/ubuntu/starwars/
+COPY . /var/ubuntu/starwars/
 
 RUN mkdir /var/log/uwsgi
 RUN touch /var/log/uwsgi/starwars.log
