@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: prod
+  name: starwars
+  labels:
+    app: starwars
+spec:
+  selector:
+    matchLabels:
+      app: starwars
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: starwars
+        tier: starwars
+    spec:
+      containers:
+      - name: starwars
+        image: evgen66rus/devops_django:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+          name: starwars
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: prod
+  name: starwars
+  labels:
+    app: starwars
+spec:
+  ports:
+  - port: 80
+    targetPort: 8000
+  selector:
+    app: starwars
+    tier: starwars
+  type: LoadBalancer

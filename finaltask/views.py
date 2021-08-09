@@ -8,6 +8,7 @@ def index(request):
     return render(request, 'base_generic.html')
 
 def character(request):
+    # character
     person = Character.objects.all()
     context = {
         'person': person
@@ -24,7 +25,7 @@ def planets(request):
 
 def planet_detail_view(request,pk):
     # get planet's detailes
-    
+
     try:
         planet_id=Planet.objects.get(pk=pk)
     except Planet.DoesNotExist:
