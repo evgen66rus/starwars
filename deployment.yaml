@@ -21,7 +21,7 @@ spec:
         image: evgen66rus/devops_django:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8000
           name: starwars
 
 ---
@@ -34,7 +34,7 @@ metadata:
 spec:
   ports:
   - port: 80
-    targetPort: 80
+    targetPort: 8000
   selector:
     app: starwars
     tier: starwars
