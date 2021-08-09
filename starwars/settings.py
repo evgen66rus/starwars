@@ -78,12 +78,12 @@ WSGI_APPLICATION = 'starwars.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('DB_ENGINE'),
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'prod',
+        'USER': 'postgres',
+        'PASSWORD': 'Ae0480417',
+        'HOST': '10.1.64.3',
+        'PORT': '5432',
     }
 }
 
