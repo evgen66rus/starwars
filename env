@@ -1,0 +1,27 @@
+NODE_ENV=development
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=starwars-dev
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_HOST=postgres.cqp2puewpvvd.us-east-2.rds.amazonaws.com
+DB_PORT=5432
+
+
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Before running tests"
+  build:
+    commands:
+      - echo "Running all unit tests"
+      - python3 manage.py test
+      - python3 manage.py makemigrations
+      - python3 manage.py migrate
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
+artifacts:
+  files:
+    - '**/*'
