@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: prod
+  namespace: default
   name: starwars
   labels:
     app: starwars
@@ -29,7 +29,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: prod
+  namespace: default
   name: starwars
   labels:
     app: starwars
