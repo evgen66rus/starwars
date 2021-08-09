@@ -2,42 +2,42 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: default
-  name: starwars
+  name: starwars-stage
   labels:
-    app: starwars
+    app: starwars-stage
 spec:
   selector:
     matchLabels:
-      app: starwars
+      app: starwars-stage
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: starwars
-        tier: starwars
+        app: starwars-stage
+        tier: starwars-stage
     spec:
       containers:
-      - name: starwars
-        image: evgen66rus/devops_django:latest
+      - name: starwars-stage
+        image: evgen66rus/devops_django_stage:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
-          name: starwars
+          name: starwars-stage
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
   namespace: default
-  name: starwars
+  name: starwars-stage
   labels:
-    app: starwars
+    app: starwars-stage
 spec:
   ports:
   - port: 80
     targetPort: 8000
   selector:
-    app: starwars
-    tier: starwars
+    app: starwars-stage
+    tier: starwars-stage
   type: LoadBalancer

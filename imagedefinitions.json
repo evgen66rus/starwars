@@ -1,6 +1,6 @@
 [
     {
-      "name": "devops_django",
-      "imageUri": "evgen66rus/devops_django:latest"
+      "name": "devops_django_stage",
+      "imageUri": "evgen66rus/devops_django_stage:latest"
     }
   ]
