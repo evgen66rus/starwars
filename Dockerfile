@@ -25,7 +25,7 @@ RUN chmod 755 /var/log/uwsgi/starwars.log
 
 RUN python3 manage.py collectstatic --noinput
 RUN python3 manage.py makemigrations --noinput
-#RUN python3 manage.py migrate --noinput
+RUN python3 manage.py migrate --noinput
 EXPOSE 8000
 
 CMD uwsgi /etc/uwsgi/sites/starwars.ini
