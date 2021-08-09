@@ -1,3 +1,1 @@
 starwars
-ping
-pong
