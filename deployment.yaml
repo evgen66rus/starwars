@@ -5,6 +5,9 @@ metadata:
   labels:
     app: starwars
 spec:
+  selector:
+    matchLabels:
+      app: starwars
   strategy:
     type: Recreate
   template:
