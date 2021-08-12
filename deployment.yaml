@@ -35,6 +35,7 @@ spec:
             mountPath: /var/log/uwsgi/
       - name: beat-manual
         image: elastic/filebeat:7.8.0
+        command: ["sh", "-c", "chmod -R 755 /tmp/"]
         args: [
           "-c", "/etc/filebeat/filebeat.yml",
           "-e"
