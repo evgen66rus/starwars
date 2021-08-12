@@ -42,7 +42,7 @@ spec:
         volumeMounts:
           - name: beat-manual-config
             mountPath: /etc/filebeat/
-          - name: manual-log-directory
+          - name: uwsgi
             mountPath: /tmp/
       volumes:
         - name: beat-manual-config
