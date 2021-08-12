@@ -18,6 +18,10 @@ spec:
         app: starwars-stage
         tier: starwars-stage
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000 
       containers:
       - name: starwars-stage
         image: evgen66rus/devops_django_stage:latest
@@ -35,7 +39,6 @@ spec:
             mountPath: /var/log/uwsgi/
       - name: beat-manual
         image: elastic/filebeat:7.8.0
-        command: ["sh", "-c", "chmod -R 755 /tmp/"]
         args: [
           "-c", "/etc/filebeat/filebeat.yml",
           "-e"
