@@ -36,7 +36,7 @@ spec:
       - name: beat-manual
         image: elastic/filebeat:7.8.0
         args: [
-          "-c", "/etc/filebeat/filebeats.yaml",
+          "-c", "/etc/filebeat/filebeat.yml",
           "-e"
         ]
         volumeMounts:
@@ -49,8 +49,8 @@ spec:
           configMap:
             name: beat-manual-config
             items:
-              - key: filebeats.yaml
-                path: filebeats.ayml
+              - key: filebeat.yml
+                path: filebeat.yml
         - name: uwsgi
           emptyDir: {}
 
